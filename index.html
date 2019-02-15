@@ -14,6 +14,7 @@
     </style>
   </head>
   <body>
+    <input id="ad" placeholder="Kullanici Adi.."><button onclick="adTm()">Tamam</button>
     <ul id="messages"></ul>
     <form action="">
       <input id="m" autocomplete="off" /><button>Send</button>
@@ -21,11 +22,16 @@
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
     <script>
+      function adTm(){
+        localStorage.setItem('ad',document.getElementById('ad').value);
+        document.getElementById('ad').value = 'Mesaj Yazabilirsiniz..';
+
+      }
         $(function () {
           var socket = io();
           $('form').submit(function(e){
             e.preventDefault(); // prevents page reloading
-            socket.emit('chat message', $('#m').val());
+            socket.emit('chat message',localStorage.getItem('ad')+': '+ $('#m').val());
             $('#m').val('');
             return false;
           });

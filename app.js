@@ -8,11 +8,16 @@ app.get('/', function(req, res){
 
 io.on('connection', function(socket){
     socket.on('chat message', function(msg){
-      console.log('message: ' + msg);
+      console.log(msg);
       io.emit('chat message', msg);
+    });
+    io.emit('chat message','Kullanıcı Katıldı');
+    socket.on('disconnect', function(){
+      io.emit('chat message','Kullanıcı ayrıldı');
     });
   });
 
 http.listen(3000, function(){
   console.log('listening on *:3000');
 });
+
