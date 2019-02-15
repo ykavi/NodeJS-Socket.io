@@ -13,7 +13,7 @@ io.on('connection', function(socket){
     });
     io.emit('chat message','Kullanıcı Katıldı');
     socket.on('disconnect', function(){
-      io.emit('chat message','Kullanıcı ayrıldı');
+      io.emit('chat message','Kullanıcı Ayrıldı');
     });
   });
 
